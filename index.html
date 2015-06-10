@@ -1,0 +1,109 @@
+---
+layout: blank
+category: frontpage
+published: true
+sitemap:
+  priority: 1
+---
+<div class="section-wrapper alpha" >
+
+
+    <section >
+      <div class="half">
+        <h1>Welcome to the Massachusetts Branch of The International Dyslexia Association (MABIDA).</h1>
+
+      </div>
+      <div class="half omega">
+        <h2>The International Dyslexia Association provides a forum where parents, educators, individuals with dyslexia and researchers share their knowledge about a disorder that affects up to 20 percent of the United States population.</h2>
+
+        <a href="/about" class=" btn btn-white btn-whitea">Learn more</a>
+      </div>
+    </section>
+
+</div>
+
+<div class="section-wrapper bravo" data-center="background-position: 50% -200px;" data-top-bottom="background-position: 50% 0px;" data-anchor-target=".bravo">
+
+
+
+</div>
+
+<div class="section-wrapper charlie" >
+
+  <section>
+
+      <div class="centered"><h1> MABIDA provides parent roundtables, professional education seminars and other resources to increase public awareness and remediation of dyslexia.</h1></div>
+
+  </section>
+
+
+</div>
+
+
+<div class="section-wrapper echo">
+  <section>
+    <div class="half">
+    <h1>Thinking of Becoming a Member of the International Dyslexia Association?</h1>
+
+    </div>
+    <div class="half omega">
+      <h2>New Rates for Parents and Students! Just $45 for parents and $25 for students!</h2>
+      <button class=" btn btn-white btn-whitea">Join Us</button>
+    </div>
+
+  </section>
+</div>
+
+
+<div class="section-wrapper delta" data-center="background-position: 50% -300px;" data-top-bottom="background-position: 50% 0px;" data-anchor-target=".delta">
+
+
+</div>
+
+<div class="section-wrapper foxtrot">
+
+  <section>
+      <h2 class="centered">Did you Know?</h2>
+
+
+      <div class="third">
+        <h3>Dyslexia is the most common learning disability.</h3>
+      </div>
+
+
+		<div class="third">
+      <h3>  It is a language-based learning disability that affects people with average to above average intelligence.</h3>
+		</div>
+
+
+		<div class="third omega">
+      <h3>There are many successful people with dyslexia. They are proof that dyslexia need not limit an individual's <a href="/future">future</a>.</h3>
+		</div>
+
+  </section>
+
+</div>
+
+
+<div class="section-wrapper golf">
+
+  <section>
+
+      <h3>Latest Blog</h3>
+
+        {% for post in site.posts limit:1 %}
+        <article>
+          <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+          <small><time datetime="{{ post.date | date: "%b %-d, %Y" }}">{{ post.date | date: "%b %-d, %Y" }}</time></small>
+          {{ post.content | truncate: 300 | remove:'{u’#text’: u’' }} <a  href="{{ post.url }}">READ MORE<i class="icon-right-dir"></i></a>
+
+        </article>
+        {% endfor %}
+        <hr>
+        <br>
+        <a href="/blog" class="btn btn-1 btn-1a">find more stories</a>
+
+
+
+  </section>
+</div>

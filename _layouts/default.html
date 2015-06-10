@@ -1,0 +1,36 @@
+---
+layout: compress
+---
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body class="{% if page.body_class %}{{ page.body_class }}{% endif %} {% if page.bodyclass %}{{ page.bodyclass }}{% endif %} {% if page.category %}{{ page.category }}{% endif %}" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+
+  <div class="container">
+    {% include header.html %}
+
+    {{ content }}
+    {% include footer.html %}
+  </div>
+  {% include menu.html %}
+
+
+
+    {% capture js %}{% if site.use_cdn %}{{ site.js_dir | prepend: site.baseurl | prepend: site.cdn }}{% else %}{{ site.js_dir | prepend: site.baseurl }}{% endif %}/mini.js{% endcapture %}
+
+    <script src="{{ js }}"></script>
+    <script>
+        (function($) {
+            $(document).ready( function() {
+
+                var s = skrollr.init();
+
+
+            } );
+        })(jQuery);
+
+    </script>
+  </body>
+</html>

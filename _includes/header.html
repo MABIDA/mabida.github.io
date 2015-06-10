@@ -1,0 +1,13 @@
+{% capture location %}{{ page.url | remove_first:'/' | split:'/' | first }}{% endcapture %}
+
+<header class="header headroom">
+    <nav>
+      <ul class="horizontal">
+        <li><a title=" {{ site.title }}" href="/"> {{ site.name }}  </a></li>
+      	<li><a {% if location == 'about' %}class="active" {% endif %}href="/about/">About</a></li>
+      	<li><a {% if location == 'future' %}class="active" {% endif %}href="/future/">Future</a></li>
+      	<li><a {% if location == 'blog' %}class="active" {% endif %}href="/blog/">Blog</a></li>
+      	<li><a {% if location == 'contact' %}class="active" {% endif %}href="/contact/">Contact</a></li>
+      </ul>
+    </nav>
+</header>

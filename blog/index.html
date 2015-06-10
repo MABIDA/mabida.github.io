@@ -1,0 +1,27 @@
+---
+layout: page
+bodyclass: blogroll
+title: Blogs
+published: true
+sitemap:
+  priority: 1
+---
+{% for post in paginator.posts %}
+  <article>
+    <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+    <small><time datetime="{{ post.date | date: "%b %-d, %Y" }}">{{ post.date | date: "%b %-d, %Y" }}</time></small>
+    {{ post.content | truncate: 300 | remove:'{u’#text’: u’' }}
+    </br>
+    <h6><a  href="{{ post.url }}">READ MORE<i class="icon-right-dir"></i></a></h6>
+    </br>
+    <hr>
+  </article>
+{% endfor %}
+
+<section>
+{% if paginator.total_pages > 1 %}
+  {% if paginator.next_page %}
+    <a class="btn btn-1 btn-1a" href="/blog/{% if paginator.next_page != 1 %}{{ paginator.next_page }}{% endif %}">see more posts</a>
+  {% endif %}
+{% endif %}
+</section>

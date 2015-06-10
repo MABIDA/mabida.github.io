@@ -1,0 +1,99 @@
+---
+layout: default
+body_class: post
+---
+
+{% capture title %}{% if page.title %}{{ page.title }} {% else %}" "{% endif %}{% endcapture %}
+{% capture description %}{% if page.description %}{{ page.description }}{% else %}{% endif %}{% endcapture %}
+{% capture date %}{% if page.date %}<time datetime="{{ page.date | date: "%b %-d, %Y" }}">{{ page.date | date: "%b %-d, %Y" }}</time>{% else %}" "{% endif %}{% endcapture %}
+{% capture author %}{% if page.author %}{{ page.author }} {% else %}" "{% endif %}{% endcapture %}
+{% capture next_picture %}{% if page.next.picture %}{{ page.next.picture }}{% else %}{% endif %}{% endcapture %}
+
+{% capture backgroundcolor %}{% if page.backgroundcolor %}#{{ page.backgroundcolor }}{% else %}#{{ site.default_page_header_bg }}{% endif %}{% endcapture %}
+{% capture foregroundcolor %}{% if page.foregroundcolor %}#{{ page.foregroundcolor }}{% else %}#{{ site.default_page_header_h1color }}{% endif %}{% endcapture %}
+
+{% capture next_backgroundcolor %}{% if page.next.backgroundcolor == null %}#{{ site.default_page_header_bg }}{% else %}#{{ page.next.backgroundcolor }}{% endif %}{% endcapture %}
+{% capture next_foregroundcolor %}{% if page.next.foregroundcolor == null %}#{{ site.default_page_header_h1color }}{% else %}#{{ page.next.foregroundcolor }}{% endif %}{% endcapture %}
+
+{% capture category %}{% if page.category %}{{ page.category }} {% else %} {% endif %}{% endcapture %}
+
+{% comment %}
+ The 'share captures', below, are used by the social shares, and do cgi_escapes on paths - which uri encodes them for twitter and tumblr etc.
+{% endcomment %}
+
+{% capture share_url %}{{ page.url | prepend: site.baseurl | prepend: site.url | cgi_escape }}{% endcapture %}
+{% capture share_title %}{{ page.title | cgi_escape }}{% endcapture %}
+{% capture share_description %}{% if page.description %}{{ page.description | cgi_escape }}{% else %}{{ page.content | truncate: 300 | cgi_escape }}{% endif %}{% endcapture %}
+{% capture share_picture %}{{ site.image_dir | prepend: site.baseurl | prepend: site.url | cgi_escape }}{{ site.thumbnail }}{% endcapture %}
+{% capture share_twitter_username %}@{{ site.twitter_username | cgi_escape }}{% endcapture %}
+
+
+
+<div class="section-wrapper alpha">
+
+  <section>
+    <h1 class="centered" itemprop="name headline">{{ title }}</h1>
+    <h2 class="centered">
+      {% if page.author %}<span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ author }}</span></span>{% endif %}
+    </h2>
+
+    <h6 class="centered">
+      {% if page.date %}<time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ date | date: "%b %-d, %Y" }}</time>{% endif %}
+    </h6>
+
+  </section>
+</div>
+
+<section itemprop="articleBody">
+
+<main role="main" itemprop="mainContentOfPage" itemscope="itemscope" itemtype="http://schema.org/Blog">
+  {{ content }}
+</main>
+
+</section>
+
+  <section>
+    {% include _inline_circled_share.html %}
+  </section>
+
+
+
+{% if page.next.url %}
+  <a href="{{page.next.url}}">
+    <div class="section-wrapper charlie">
+
+
+      <section>
+        <h6 class="centered"><strong>READ NEXT</strong><i class="icon-right-dir"></i></h6>
+        <h1 class="centered">{{page.next.title}}</h1>
+        <h3 class="centered">{{ page.next.date | date: "%b %-d, %Y" }}</h3>
+      </section>
+
+    </div>
+  </a>
+{% endif %}
+
+
+<style media="screen" type="text/css">
+
+.charlie{
+  overflow:hidden;
+  background:{{ next_backgroundcolor }};
+}
+.charlie h1,.charlie h3,.charlie h6 {color:{{ next_foregroundcolor }};}
+
+.alpha{
+  background:{{ backgroundcolor }};
+  color:{{ foregroundcolor }};
+}
+
+header{
+  background:{{ backgroundcolor }};
+}
+header a:link,header a:visited{
+  color:{{ foregroundcolor }};
+}
+header ul.horizontal li a.active{border-bottom:1px solid {{ foregroundcolor }};}
+
+
+</style>

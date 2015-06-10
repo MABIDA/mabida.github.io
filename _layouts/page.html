@@ -1,0 +1,43 @@
+---
+layout: default
+body_class: page 
+---
+
+{% if false %}
+
+READ ME!
+The page's header background is created by the capture h1bg and h1color below.
+In short, it checks if each page has a h1bg or h1color value in the yaml. If not, it
+just uses a default. It grabs the default from the _config.yml file, specifically:
+   * site.default_page_header_bg
+   *site.default_page_header_h1color
+Then it deposits them into the style tags below. It's pretty easy.
+
+{% endif %}
+
+{% capture title %}{% if page.title %}{{ page.title }} {% else %}" "{% endif %}{% endcapture %}
+{% capture date %}{% if page.date %}<time datetime="{{ page.date | date: "%b %-d, %Y" }}">{{ page.date | date: "%b %-d, %Y" }}</time>{% else %}" "{% endif %}{% endcapture %}
+{% capture category %}{% if page.category %}{{ page.category }} {% else %} {% endif %}{% endcapture %}
+{% capture h1bg %}{% if page.h1bg %}#{{ page.h1bg }}{% else %}#{{ site.default_page_header_bg }}{% endif %}{% endcapture %}
+{% capture h1color %}{% if page.h1color %}#{{ page.h1color }}{% else %}#{{ site.default_page_header_h1color }}{% endif %}{% endcapture %}
+
+<style media="screen" type="text/css">
+      header,
+      .alpha {background:{{ h1bg }};}
+      .alpha h1{color:{{ h1color }};}
+      header a:link,header a:visited{color:{{ h1color }};}
+      header ul.horizontal li a.active{border-bottom:1px solid {{ h1color }};}
+
+</style>
+
+<div class="section-wrapper alpha">
+  <section>
+    <h1 class="centered" itemprop="name headline">{{ page.title }}</h1>
+  </section>
+</div>
+
+<section>
+  <main>
+    {{ content }}
+  </main>
+</section>

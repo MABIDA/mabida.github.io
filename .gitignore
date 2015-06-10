@@ -1,0 +1,5 @@
+# dont submit the _deploy.yml, it has SECRET and ACCESS keys.
+_deploy.yml
+# also this nuisance
+.sass-cache/*
+.DS_Store
